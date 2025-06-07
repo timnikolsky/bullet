@@ -1,0 +1,11 @@
+@mixin light-theme {
+	--color-surface: #FFFFFF;
+	--color-background: #F0EFEE;
+	--color-foreground: #222222;
+}
+
+@mixin dark-theme {
+	--color-surface: #18191B;
+	--color-background: #090909;
+	--color-foreground: #E0E1E4;
+}

@@ -1,0 +1,46 @@
+@use './themes.scss';
+
+@font-face {
+	font-family: 'Inter';
+	src: url('/fonts/Inter.ttf') format('truetype');
+	font-weight: 400;
+}
+
+:root {
+	font-family: ui-sans-serif, 'Segoe UI', sans-serif;
+	--titlebar-height: 34px;
+}
+
+* {
+	user-select: none;
+	box-sizing: border-box;
+	font-family: 'Inter', ui-sans-serif, 'Segoe UI', sans-serif;
+}
+
+body {
+	background: var(--color-background);
+	// background: transparent;
+	margin: 0;
+	overflow: hidden;
+	position: relative;
+	color: var(--color-foreground);
+}
+
+@for $i from 1 through 6 {
+	h#{$i} {
+		font-weight: 500;
+	}
+}
+
+
+/* Themes */
+
+:root {
+	@include themes.light-theme;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		@include themes.dark-theme;
+	}
+}

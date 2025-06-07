@@ -6,5 +6,19 @@ export default defineConfig({
 
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
+	},
+	server: {
+		port: 5173,
+		strictPort: true,
+		hmr: {
+			port: 5173
+		}
+	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern',
+			}
+		}
 	}
 });
