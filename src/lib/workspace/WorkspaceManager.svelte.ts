@@ -1,37 +1,73 @@
 import { Workspace, type WorkspaceOptions } from '$lib/workspace/Workspace';
-import { BaseDirectory, exists, readTextFile, writeTextFile } from '@tauri-apps/plugin-fs';
+import { BaseDirectory, create, exists, mkdir, readDir, readTextFile } from '@tauri-apps/plugin-fs';
 import { SvelteMap } from 'svelte/reactivity';
+
+const fsOptions = {
+	baseDir: BaseDirectory.AppData
+};
 
 export class WorkspaceManager {
 	workspaces = $state(new SvelteMap<string, Workspace>());
 	currentWorkspaceId: string | null = $state(null);
 	currentWorkspace: Workspace | null = $state(null);
+	workspacesLoadPromise: Promise<void>;
 
 	constructor() {
+		this.workspacesLoadPromise = new Promise(() => {})
 		this.loadWorkspaces();
 	}
 
 	async loadWorkspaces() {
-		const workspacesFileExists = await exists('workspaces.json', {
-			baseDir: BaseDirectory.AppData
-		});
+		const workspacesDirExists = await exists('workspaces', fsOptions);
 
-		if (!workspacesFileExists) {
-			await writeTextFile('workspaces.json', '[]', {
+		if (!workspacesDirExists) {
+			await mkdir('workspaces', {
 				baseDir: BaseDirectory.AppData
 			});
-			return;
 		}
 
-		const file = await readTextFile('workspaces.json', {
-			baseDir: BaseDirectory.AppData
-		});
+		const workspacesEntries = await readDir('workspaces', fsOptions);
 
-		const workspacesData = JSON.parse(file) as Array<WorkspaceOptions>;
-		for (const workspaceData of workspacesData) {
-			const workspace = new Workspace(workspaceData);
+		workspacesEntries.forEach(async (entry) => {
+			if (!entry.isDirectory) return;
+
+			const workspaceConfigFileExists = await exists(
+				`workspaces/${entry.name}/bullet.json`,
+				fsOptions
+			);
+
+			if (!workspaceConfigFileExists) return;
+
+			const workspaceConfigFile = await readTextFile(
+				`workspaces/${entry.name}/bullet.json`,
+				fsOptions
+			);
+
+			const workspaceConfig = JSON.parse(workspaceConfigFile) as WorkspaceOptions;
+
+			const workspace = new Workspace(workspaceConfig);
+
 			this.workspaces.set(workspace.id, workspace);
+		});
+	}
+
+	async getWorkspace(id: string): Promise<Workspace | null> {
+		if (this.workspaces.has(id)) {
+			return this.workspaces.get(id) || null;
 		}
+
+		const workspaceConfigFileExists = await exists(`workspaces/${id}/bullet.json`, fsOptions);
+
+		if (!workspaceConfigFileExists) {
+			return null;
+		}
+
+		const workspaceConfigFile = await readTextFile(`workspaces/${id}/bullet.json`, fsOptions);
+		const workspaceConfig = JSON.parse(workspaceConfigFile) as WorkspaceOptions;
+		const workspace = new Workspace(workspaceConfig);
+		this.workspaces.set(workspace.id, workspace);
+
+		return workspace;
 	}
 
 	setCurrentWorkspace(workspaceId: string | null) {
@@ -40,7 +76,7 @@ export class WorkspaceManager {
 			this.currentWorkspace = null;
 			return;
 		}
-		
+
 		const workspace = this.workspaces.get(workspaceId);
 		if (workspace) {
 			this.currentWorkspaceId = workspaceId;
@@ -48,6 +84,15 @@ export class WorkspaceManager {
 		} else {
 			console.error(`Workspace with id ${workspaceId} not found.`);
 		}
+	}
+
+	async createWorkspace(id: string, name: string) {
+		await mkdir(`workspaces/${id}`, fsOptions);
+		const file = await create(`workspaces/${id}/bullet.json`, fsOptions);
+		await file.write(new TextEncoder().encode(JSON.stringify({ id, name, provider: 'local' })));
+		await file.close();
+		const workspace = new Workspace({ id, name, adapter: 'local' });
+		this.workspaces.set(id, workspace);
 	}
 }
 

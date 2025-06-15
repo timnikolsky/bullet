@@ -1,10 +1,16 @@
 <script lang="ts">
-	import { workspaceManager } from '$lib/workspace/WorkspaceManager.svelte';
 </script>
 
 <div class="titlebar">
 	<div class="left titlebar-section">
-		<svg class="app-icon" width="68" height="16" viewBox="0 0 68 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg
+			class="app-icon"
+			width="68"
+			height="16"
+			viewBox="0 0 68 16"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
 			<g clip-path="url(#clip0_1237_109)">
 				<path
 					d="M2.5 4C3.60457 4 4.5 3.10457 4.5 2C4.5 0.89543 3.60457 0 2.5 0C1.39543 0 0.5 0.89543 0.5 2C0.5 3.10457 1.39543 4 2.5 4Z"
@@ -48,9 +54,7 @@
 			</defs>
 		</svg>
 	</div>
-	<div class="center titlebar-section">
-		{workspaceManager.currentWorkspace?.name ?? 'Bullet'}
-	</div>
+	<div class="center titlebar-section">Bullet</div>
 	<div class="right titlebar-section"></div>
 </div>
 
@@ -62,6 +66,7 @@
 		width: 100%;
 		font-size: 12px;
 		font-weight: 400;
+		flex-shrink: 0;
 	}
 
 	.titlebar-section {
@@ -77,12 +82,6 @@
 		}
 	}
 
-	.center {
-	}
-
-	.right {
-	}
-
 	:global([data-tauri-decorum-tb]) {
 		align-items: center !important;
 		height: var(--titlebar-height) !important;
@@ -92,8 +91,14 @@
 	}
 
 	:global(.decorum-tb-btn) {
-		height: var(--titlebar-height);
+		height: var(--titlebar-height) !important;
 		color: var(--color-foreground);
+		width: 45px;
+	}
+
+	:global(#decorum-tb-close):hover {
+		background: #C42B1C !important;
+		color: white !important;
 	}
 
 	// :global([data-tauri-drag-region]) {

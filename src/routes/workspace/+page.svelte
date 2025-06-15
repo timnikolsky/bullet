@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import Editor from '$lib/components/Editor.svelte';
+	import Editor from '$lib/components/editor/Editor.svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import { workspaceManager } from '$lib/workspace/WorkspaceManager.svelte';
 
-	let workspace = workspaceManager.currentWorkspace;
-	if (!workspace) {
-		goto('/')
-	}
+	const { data } = $props();
+
+	const workspace = workspaceManager.workspaces.get(data.workspaceId)!;
 
 	let views: View | ViewStack | null = $state({
-		id: 'view1'
+		id: 'view1',
+		tabs: ['1']
 	});
 
 	interface ViewStack {
@@ -20,6 +19,7 @@
 
 	interface View {
 		id: string;
+		tabs: string[];
 	}
 </script>
 
@@ -52,7 +52,7 @@
 	<div class="view">
 		<div class="text-page">
 			<div class="content">
-				<h1>{view.id}</h1>
+				<h1 class="title">This is my home page</h1>
 				<Editor bind:value={view.id} />
 			</div>
 		</div>
@@ -76,6 +76,7 @@
 		border-radius: 0.5rem;
 		flex: 1;
 		position: relative;
+		overflow-y: auto;
 	}
 
 	.text-page {
@@ -90,5 +91,14 @@
 			width: 100%;
 			max-width: 40rem;
 		}
+	}
+
+	.title {
+		font-family: var(--font-family-heading, Merriweather, sans-serif);
+		margin: 0;
+		font-size: 2.5rem;
+		line-height: 3rem;
+		margin-top: 3rem;
+		margin-bottom: 1rem;
 	}
 </style>

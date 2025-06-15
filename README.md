@@ -1,38 +1,21 @@
-# sv
+<p align="center">
+    <img src="./.github/assets/icon.svg" alt="Bullet logo" width="128" height="128">
+    <h1 align="center">Bullet</h1>
+</p>
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+> [!NOTE]  
+> Bullet is in very early development. The code may be messy, and the app is not ready for regular use yet — I’m actively experimenting and iterating on core features.
+>
+> If you have any ideas or want to share your experience about existing productivity apps, please message me on [Bluesky](https://bsky.app/profile/timnik.me) or [Telegram](https://t.me/timnikolsky), I'll be very happy to chat!
 
-## Creating a project
+**Bullet** is a productivity and note-taking app.
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Planned features
 
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- **Cross-platform**. The app will be available on desktop and mobile and web.
+- **Local-first**. You own your data, always have full access to it, and can use the app offline.
+- **Private**. Supports local-only workspaces, encrypted online mode and protected pages.
+- **Decentralized**. You can host your own server or use a third-party one, and you can also use the app completely offline.
+- **Blocks system**. Every piece of content is a block, which is much easier to work with than a plain mardown.
+- **Extensible**. You can install plugins into your workspace to have custom blocks, commands, and more.
+- **Customizable**. You can personalize your workspace however you want, with color themes, custom fonts and custom CSS.

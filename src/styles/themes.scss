@@ -2,10 +2,14 @@
 	--color-surface: #FFFFFF;
 	--color-background: #F0EFEE;
 	--color-foreground: #222222;
+	--color-card-background: #FFFFFF;
+	--color-card-border: #DDDDDD;
 }
 
 @mixin dark-theme {
 	--color-surface: #18191B;
 	--color-background: #090909;
 	--color-foreground: #E0E1E4;
+	--color-card-background: #303133;
+	--color-card-border: #303133;
 }

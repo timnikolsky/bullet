@@ -14,6 +14,9 @@ importers:
       '@tauri-apps/plugin-os':
         specifier: ~2
         version: 2.2.0
+      '@tauri-apps/plugin-sql':
+        specifier: ~2
+        version: 2.2.0
       '@tiptap-pro/extension-drag-handle':
         specifier: ^2.17.4
         version: 2.17.4(@tiptap-pro/extension-node-range@2.17.4(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))(@tiptap/pm@2.11.5))(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))(@tiptap/extension-collaboration@2.11.5(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))(@tiptap/pm@2.11.5)(y-prosemirror@1.2.15(prosemirror-model@1.25.1)(prosemirror-state@1.4.3)(prosemirror-view@1.38.0)(y-protocols@1.0.6(yjs@13.6.23))(yjs@13.6.23)))(@tiptap/pm@2.11.5)(y-prosemirror@1.2.15(prosemirror-model@1.25.1)(prosemirror-state@1.4.3)(prosemirror-view@1.38.0)(y-protocols@1.0.6(yjs@13.6.23))(yjs@13.6.23))
@@ -29,6 +32,9 @@ importers:
       bits-ui:
         specifier: ^2.4.1
         version: 2.4.1(@internationalized/date@3.8.2)(svelte@5.33.14)
+      drizzle-orm:
+        specifier: ^0.44.2
+        version: 0.44.2
       prosemirror-commands:
         specifier: ^1.6.2
         version: 1.6.2
@@ -105,6 +111,9 @@ importers:
       vite:
         specifier: ^5.4.11
         version: 5.4.11(sass-embedded@1.83.4)
+      vite-plugin-devtools-json:
+        specifier: ^0.1.1
+        version: 0.1.1(vite@5.4.11(sass-embedded@1.83.4))
       vitest:
         specifier: ^2.0.4
         version: 2.1.8(sass-embedded@1.83.4)
@@ -576,6 +585,9 @@ packages:
   '@tauri-apps/plugin-os@2.2.0':
     resolution: {integrity: sha512-HszbCdbisMlu5QhCNAN8YIWyz2v33abAWha6+uvV2CKX8P5VSct/y+kEe22JeyqrxCnWlQ3DRx7s49Byg7/0EA==}
 
+  '@tauri-apps/plugin-sql@2.2.0':
+    resolution: {integrity: sha512-yGdybpaMENe/p6lTXslvDHYNNvD9qB7palaBBF5fJHdYSkwd3vrLiYU9dFfLwUAwnsBylND55EiivWsjhazejA==}
+
   '@tiptap-pro/extension-drag-handle@2.17.4':
     resolution: {integrity: sha512-QjMY9485lXccCTVoFmBi2s1u5JpFELwqoN7ZPBf+M39V7E8T8KZ6sh+R4x8dyMFaTu4PQA8JOCOtuK36C+CRMA==}
     peerDependencies:
@@ -952,6 +964,98 @@ packages:
 
   devalue@5.1.1:
     resolution: {integrity: sha512-maua5KUiapvEwiEAe+XnlZ3Rh0GD+qI1J/nb9vrJc3muPXvcF/8gXYTWF76+5DAqHyDUtOIImEuo0YKE9mshVw==}
+
+  drizzle-orm@0.44.2:
+    resolution: {integrity: sha512-zGAqBzWWkVSFjZpwPOrmCrgO++1kZ5H/rZ4qTGeGOe18iXGVJWf3WPfHOVwFIbmi8kHjfJstC6rJomzGx8g/dQ==}
+    peerDependencies:
+      '@aws-sdk/client-rds-data': '>=3'
+      '@cloudflare/workers-types': '>=4'
+      '@electric-sql/pglite': '>=0.2.0'
+      '@libsql/client': '>=0.10.0'
+      '@libsql/client-wasm': '>=0.10.0'
+      '@neondatabase/serverless': '>=0.10.0'
+      '@op-engineering/op-sqlite': '>=2'
+      '@opentelemetry/api': ^1.4.1
+      '@planetscale/database': '>=1.13'
+      '@prisma/client': '*'
+      '@tidbcloud/serverless': '*'
+      '@types/better-sqlite3': '*'
+      '@types/pg': '*'
+      '@types/sql.js': '*'
+      '@upstash/redis': '>=1.34.7'
+      '@vercel/postgres': '>=0.8.0'
+      '@xata.io/client': '*'
+      better-sqlite3: '>=7'
+      bun-types: '*'
+      expo-sqlite: '>=14.0.0'
+      gel: '>=2'
+      knex: '*'
+      kysely: '*'
+      mysql2: '>=2'
+      pg: '>=8'
+      postgres: '>=3'
+      prisma: '*'
+      sql.js: '>=1'
+      sqlite3: '>=5'
+    peerDependenciesMeta:
+      '@aws-sdk/client-rds-data':
+        optional: true
+      '@cloudflare/workers-types':
+        optional: true
+      '@electric-sql/pglite':
+        optional: true
+      '@libsql/client':
+        optional: true
+      '@libsql/client-wasm':
+        optional: true
+      '@neondatabase/serverless':
+        optional: true
+      '@op-engineering/op-sqlite':
+        optional: true
+      '@opentelemetry/api':
+        optional: true
+      '@planetscale/database':
+        optional: true
+      '@prisma/client':
+        optional: true
+      '@tidbcloud/serverless':
+        optional: true
+      '@types/better-sqlite3':
+        optional: true
+      '@types/pg':
+        optional: true
+      '@types/sql.js':
+        optional: true
+      '@upstash/redis':
+        optional: true
+      '@vercel/postgres':
+        optional: true
+      '@xata.io/client':
+        optional: true
+      better-sqlite3:
+        optional: true
+      bun-types:
+        optional: true
+      expo-sqlite:
+        optional: true
+      gel:
+        optional: true
+      knex:
+        optional: true
+      kysely:
+        optional: true
+      mysql2:
+        optional: true
+      pg:
+        optional: true
+      postgres:
+        optional: true
+      prisma:
+        optional: true
+      sql.js:
+        optional: true
+      sqlite3:
+        optional: true
 
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
@@ -1747,6 +1851,10 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
+  uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
+    hasBin: true
+
   varint@6.0.0:
     resolution: {integrity: sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg==}
 
@@ -1754,6 +1862,11 @@ packages:
     resolution: {integrity: sha512-uPAwSr57kYjAUux+8E2j0q0Fxpn8M9VoyfGiRI8Kfktz9NcYMCenwY5RnZxnF1WTu3TGiYipirIzacLL3VVGFg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
+
+  vite-plugin-devtools-json@0.1.1:
+    resolution: {integrity: sha512-kjXyDTZDwOKiqum/DBWZ6JenUh9qWFr/0/peoQqARanseFyNmtxOrexAxbE7ERqBSsMSkQA7qNTSQkZGw1SfPw==}
+    peerDependencies:
+      vite: ^2.7.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
 
   vite@5.4.11:
     resolution: {integrity: sha512-c7jFQRklXua0mTzneGW9QVyxFjUgwcihC4bXEtujIo2ouWCe1Ajt/amn2PCxYnhYfd5k09JX3SB7OYWFKYqj8Q==}
@@ -2215,6 +2328,10 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.2.0
 
+  '@tauri-apps/plugin-sql@2.2.0':
+    dependencies:
+      '@tauri-apps/api': 2.2.0
+
   '@tiptap-pro/extension-drag-handle@2.17.4(@tiptap-pro/extension-node-range@2.17.4(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))(@tiptap/pm@2.11.5))(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))(@tiptap/extension-collaboration@2.11.5(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))(@tiptap/pm@2.11.5)(y-prosemirror@1.2.15(prosemirror-model@1.25.1)(prosemirror-state@1.4.3)(prosemirror-view@1.38.0)(y-protocols@1.0.6(yjs@13.6.23))(yjs@13.6.23)))(@tiptap/pm@2.11.5)(y-prosemirror@1.2.15(prosemirror-model@1.25.1)(prosemirror-state@1.4.3)(prosemirror-view@1.38.0)(y-protocols@1.0.6(yjs@13.6.23))(yjs@13.6.23))':
     dependencies:
       '@tiptap-pro/extension-node-range': 2.17.4(@tiptap/core@2.11.5(@tiptap/pm@2.11.5))(@tiptap/pm@2.11.5)
@@ -2623,6 +2740,8 @@ snapshots:
   deepmerge@4.3.1: {}
 
   devalue@5.1.1: {}
+
+  drizzle-orm@0.44.2: {}
 
   entities@4.5.0: {}
 
@@ -3426,6 +3545,8 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
+  uuid@11.1.0: {}
+
   varint@6.0.0: {}
 
   vite-node@2.1.8(sass-embedded@1.83.4):
@@ -3445,6 +3566,11 @@ snapshots:
       - sugarss
       - supports-color
       - terser
+
+  vite-plugin-devtools-json@0.1.1(vite@5.4.11(sass-embedded@1.83.4)):
+    dependencies:
+      uuid: 11.1.0
+      vite: 5.4.11(sass-embedded@1.83.4)
 
   vite@5.4.11(sass-embedded@1.83.4):
     dependencies:

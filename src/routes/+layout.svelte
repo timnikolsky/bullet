@@ -2,19 +2,13 @@
 	import StatusBar from '$lib/components/StatusBar.svelte';
 	import Titlebar from '$lib/components/Titlebar.svelte';
 	import '../styles/global.scss';
-	import Counter from '$lib/components/blocks/Counter.svelte';
 
 	let { children } = $props();
-
-	$effect(() => {
-
-		customElements.define('bullet-counter', Counter.element!);
-	})
 </script>
 
 <div class="app">
 	<Titlebar/>
-	<div class="views">
+	<div class="layout">
 		{@render children()}
 	</div>
 	<StatusBar/>
@@ -28,11 +22,12 @@
 		flex-direction: column;
 	}
 
-	.views {
-		flex: 1;
+	.layout {
 		display: flex;
 		padding: 0 0.5rem;
 		gap: 0.5rem;
 		position: relative;
+		flex: 1;
+		overflow: hidden;
 	}
 </style>

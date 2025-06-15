@@ -1,14 +1,22 @@
 @use './themes.scss';
 
 @font-face {
-	font-family: 'Inter';
-	src: url('/fonts/Inter.ttf') format('truetype');
-	font-weight: 400;
+	font-family: Inter;
+	src: url("/fonts/Inter.woff2") format("woff2-variations");
+	font-display: swap;
+	font-weight: 1 999;
+}
+
+@font-face {
+	font-family: Merriweather;
+	src: url("/fonts/Merriweather.woff2") format("woff2-variations");
+	font-display: swap;
+	font-weight: 1 999;
 }
 
 :root {
-	font-family: ui-sans-serif, 'Segoe UI', sans-serif;
-	--titlebar-height: 34px;
+	font-family: var(--font-family-text);
+	--titlebar-height: 2.25rem;
 }
 
 * {
@@ -24,6 +32,13 @@ body {
 	overflow: hidden;
 	position: relative;
 	color: var(--color-foreground);
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+
+	// hide scrollbar
+	::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 @for $i from 1 through 6 {
@@ -37,6 +52,9 @@ body {
 
 :root {
 	@include themes.light-theme;
+
+	--font-family-text: Inter, ui-sans-serif, 'Segoe UI', sans-serif;
+	--font-family-heading: Merriweather, ui-serif, 'Segoe UI', serif;
 }
 
 @media (prefers-color-scheme: dark) {

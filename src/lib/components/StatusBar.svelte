@@ -18,6 +18,7 @@
 		justify-content: space-between;
 		font-family: 12px;
 		padding-inline: 8px;
+		flex-shrink: 0;
 	}
 	
 	.items {
