@@ -1,4 +1,4 @@
-import Paragraph from '$lib/components/blocks/Paragraph.svelte';
+import Paragraph from '$lib/core/blocks/Paragraph.svelte';
 import type { EditorView, NodeView } from 'prosemirror-view';
 import { flushSync, mount, unmount } from 'svelte';
 import type { Attachment } from 'svelte/attachments';

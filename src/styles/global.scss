@@ -22,7 +22,10 @@
 * {
 	user-select: none;
 	box-sizing: border-box;
-	font-family: 'Inter', ui-sans-serif, 'Segoe UI', sans-serif;
+}
+
+button, input {
+	font-family: var(--font-family-text);
 }
 
 body {

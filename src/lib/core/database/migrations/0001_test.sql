@@ -1,0 +1,1 @@
+ALTER TABLE `pages` ADD `type` text DEFAULT 'document' NOT NULL;

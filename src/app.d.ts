@@ -1,5 +1,5 @@
-// See https://svelte.dev/docs/kit/types#app.d.ts
-// for information about these interfaces
+import * as app from '@tauri-apps/api';
+
 declare global {
 	namespace App {
 		// interface Error {}
@@ -7,6 +7,12 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
+	}
+}
+
+declare global {
+	interface Window {
+		__TAURI__: typeof app;
 	}
 }
 

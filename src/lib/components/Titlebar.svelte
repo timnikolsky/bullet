@@ -1,61 +1,28 @@
 <script lang="ts">
+	import WindowsControls from '$lib/components/WindowsControls.svelte';
+	import { platform } from '@tauri-apps/plugin-os';
+
+	const currentPlatform = '__TAURI__' in window ? platform() : 'web';
 </script>
 
-<div class="titlebar">
+<div class="titlebar" data-tauri-drag-region>
 	<div class="left titlebar-section">
-		<svg
-			class="app-icon"
-			width="68"
-			height="16"
-			viewBox="0 0 68 16"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-		>
-			<g clip-path="url(#clip0_1237_109)">
-				<path
-					d="M2.5 4C3.60457 4 4.5 3.10457 4.5 2C4.5 0.89543 3.60457 0 2.5 0C1.39543 0 0.5 0.89543 0.5 2C0.5 3.10457 1.39543 4 2.5 4Z"
-					fill="currentColor"
-				/>
-				<path
-					d="M2.5 16C3.60457 16 4.5 15.1046 4.5 14C4.5 12.8954 3.60457 12 2.5 12C1.39543 12 0.5 12.8954 0.5 14C0.5 15.1046 1.39543 16 2.5 16Z"
-					fill="currentColor"
-				/>
-				<path
-					d="M14.5 4C15.6046 4 16.5 3.10457 16.5 2C16.5 0.89543 15.6046 0 14.5 0C13.3954 0 12.5 0.89543 12.5 2C12.5 3.10457 13.3954 4 14.5 4Z"
-					fill="currentColor"
-				/>
-				<path
-					d="M14.5 16C15.6046 16 16.5 15.1046 16.5 14C16.5 12.8954 15.6046 12 14.5 12C13.3954 12 12.5 12.8954 12.5 14C12.5 15.1046 13.3954 16 14.5 16Z"
-					fill="currentColor"
-				/>
-				<path
-					d="M30.4835 7.95967C31.0097 8.18517 31.4232 8.54492 31.7237 9.03887C32.0245 9.53282 32.1747 10.0858 32.1747 10.6979C32.1747 11.5785 31.8472 12.3194 31.1922 12.9207C30.5372 13.5113 29.7265 13.8066 28.76 13.8066H24.25V2.53149H28.6957C29.6192 2.53149 30.3762 2.80532 30.9667 3.35297C31.568 3.90062 31.8687 4.58787 31.8687 5.41472C31.8687 5.91942 31.74 6.40799 31.4823 6.88047C31.2353 7.35297 30.9022 7.71269 30.4835 7.95967ZM30.4352 5.60799C30.4352 5.28584 30.3548 4.99592 30.1935 4.73819C30.0433 4.48047 29.834 4.28182 29.5655 4.14222C29.297 3.99189 28.9962 3.91672 28.6635 3.91672H25.6353V7.29927H28.6795C29.1735 7.29927 29.587 7.13819 29.9198 6.81604C30.2635 6.48317 30.4352 6.08047 30.4352 5.60799ZM28.744 12.4053C29.3022 12.4053 29.7695 12.2281 30.1453 11.8738C30.5213 11.5194 30.709 11.0738 30.709 10.5369C30.709 10.0107 30.5213 9.57042 30.1453 9.21604C29.7695 8.86169 29.3022 8.68452 28.744 8.68452H25.6353V12.4053H28.744Z"
-					fill="currentColor"
-				/>
-				<path
-					d="M38.0968 14C36.9263 14 35.9865 13.651 35.278 12.9531C34.58 12.2443 34.231 11.3047 34.231 10.1343V5.10876H35.6V9.90876C35.6 10.4779 35.702 10.9719 35.906 11.3906C36.11 11.7987 36.4 12.1155 36.776 12.341C37.1518 12.5665 37.592 12.6792 38.0968 12.6792C38.8698 12.6792 39.4765 12.4323 39.9168 11.9383C40.357 11.4443 40.5773 10.7678 40.5773 9.90876V5.10876H41.9463V10.1343C41.9463 11.3047 41.5973 12.2443 40.8993 12.9531C40.2015 13.651 39.2673 14 38.0968 14Z"
-					fill="currentColor"
-				/>
-				<path d="M44.5692 13.8067V2H45.9382V13.8067H44.5692Z" fill="currentColor" />
-				<path d="M48.6905 13.8067V2H50.0595V13.8067H48.6905Z" fill="currentColor" />
-				<path
-					d="M60.946 9.48991C60.946 9.60803 60.9353 9.77448 60.9138 9.98923H53.4883C53.5955 10.7946 53.9285 11.4443 54.4868 11.9382C55.0453 12.4215 55.7325 12.6631 56.5485 12.6631C57.15 12.6631 57.6815 12.5342 58.1433 12.2765C58.6158 12.008 58.9915 11.6322 59.2708 11.149H60.7043C60.3393 12.051 59.7915 12.7544 59.0613 13.259C58.331 13.753 57.4935 14 56.5485 14C55.2923 14 54.2398 13.5651 53.3915 12.6953C52.5433 11.8255 52.119 10.7463 52.119 9.45771C52.119 8.15838 52.5433 7.07918 53.3915 6.22011C54.2398 5.35031 55.2923 4.91541 56.5485 4.91541C57.848 4.91541 58.9055 5.35568 59.7218 6.23623C60.5378 7.11676 60.946 8.20133 60.946 9.48991ZM56.5485 6.22011C56.0333 6.22011 55.5608 6.32213 55.131 6.52616C54.7123 6.73018 54.3633 7.02548 54.0843 7.41206C53.805 7.78791 53.617 8.22281 53.5205 8.71676H59.5608C59.464 8.21206 59.276 7.77178 58.997 7.39596C58.7178 7.00938 58.3688 6.71946 57.95 6.52616C57.531 6.32213 57.064 6.22011 56.5485 6.22011Z"
-					fill="currentColor"
-				/>
-				<path
-					d="M66.4865 12.5342H67.4367V13.8067H66.3092C65.375 13.8067 64.6395 13.5382 64.1025 13.0013C63.5657 12.4537 63.2972 11.7074 63.2972 10.7624V6.34899H61.767V6.10736L64.457 3.27246H64.6662V5.10871H67.3885V6.34899H64.6662V10.7141C64.6662 11.1114 64.736 11.4443 64.8757 11.7127C65.0152 11.9812 65.2192 12.1852 65.4877 12.3248C65.767 12.4644 66.0997 12.5342 66.4865 12.5342Z"
-					fill="currentColor"
-				/>
-			</g>
-			<defs>
-				<clipPath id="clip0_1237_109">
-					<rect width="67" height="16" fill="currentColor" transform="translate(0.5)" />
-				</clipPath>
-			</defs>
-		</svg>
+		{#if currentPlatform !== 'macos'}
+			<svg class="app-icon" width="16" height="16">
+				<circle cx="2" cy="2" r="2" fill="currentColor" />
+				<circle cx="2" cy="14" r="2" fill="currentColor" />
+				<circle cx="14" cy="2" r="2" fill="currentColor" />
+				<circle cx="14" cy="14" r="2" fill="currentColor" />
+			</svg>
+			<span>Bullet</span>
+		{/if}
 	</div>
 	<div class="center titlebar-section">Bullet</div>
-	<div class="right titlebar-section"></div>
+	<div class="right titlebar-section">
+		{#if currentPlatform === 'windows'}
+			<WindowsControls />
+		{/if}
+	</div>
 </div>
 
 <style lang="scss">
@@ -72,14 +39,48 @@
 	.titlebar-section {
 		display: flex;
 		align-items: center;
+		pointer-events: none;
 	}
 
 	.left {
+		display: flex;
+
 		.app-icon {
-			margin-inline: calc((var(--titlebar-height) - 16px) / 2);
-			// color: #834f3f;
+			display: flex;
+			margin-inline: 0.5rem;
 			color: var(--color-foreground);
 		}
+
+		.macos-controls-box {
+			height: 0.75rem;
+			margin: 0.75rem;
+			display: flex;
+			gap: 0.5rem;
+
+			button {
+				height: 0.75rem;
+				width: 0.75rem;
+				border-radius: 50%;
+				border: none;
+				color: transparent;
+
+				&:nth-child(1) {
+					background-color: #fa625c; /* close */
+				}
+
+				&:nth-child(2) {
+					background-color: #fbb43a; /* minimize */
+				}
+
+				&:nth-child(3) {
+					background-color: #25c83a; /* maximize */
+				}
+			}
+		}
+	}
+
+	.right {
+		justify-content: flex-end;
 	}
 
 	:global([data-tauri-decorum-tb]) {
@@ -97,11 +98,7 @@
 	}
 
 	:global(#decorum-tb-close):hover {
-		background: #C42B1C !important;
+		background: #c42b1c !important;
 		color: white !important;
 	}
-
-	// :global([data-tauri-drag-region]) {
-	// 	display: none;
-	// }
 </style>

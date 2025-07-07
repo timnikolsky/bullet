@@ -1,5 +1,5 @@
 <script lang="ts">
-	import StatusBar from '$lib/components/StatusBar.svelte';
+	import Statusbar from '$lib/components/Statusbar.svelte';
 	import Titlebar from '$lib/components/Titlebar.svelte';
 	import '../styles/global.scss';
 
@@ -11,12 +11,13 @@
 	<div class="layout">
 		{@render children()}
 	</div>
-	<StatusBar/>
+	<Statusbar/>
 </div>
 
 <style lang="scss">
 	.app {
 		width: 100%;
+		max-width: 100%;
 		height: 100svh;
 		display: flex;
 		flex-direction: column;

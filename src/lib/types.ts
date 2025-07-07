@@ -1,6 +1,11 @@
-export interface Page {
-	id: string;
+export interface PageMeta {
+	id: number;
 	type: string;
-	name: string;
-	content: unknown;
+	title: string;
+	order: number;
+	parentId: number | null;
+}
+
+export interface Page extends PageMeta {
+	content: string;
 }

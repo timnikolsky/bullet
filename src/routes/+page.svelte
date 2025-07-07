@@ -1,9 +1,8 @@
 <script lang="ts">
-	import Sidebar from '$lib/components/Sidebar.svelte';
-	import { workspaceManager } from '$lib/workspace/WorkspaceManager.svelte';
+	import { draggable } from '$lib/attachments/drag';
+	import { workspaceManager } from '$lib/core/workspace/WorkspaceManager.svelte';
 
-	let workspaces = $derived([...workspaceManager.workspaces.values()]);
-	workspaceManager.setCurrentWorkspace(null);
+	let workspaces = $derived([...workspaceManager.workspaceConfigs.values()]);
 
 	function handleCreateWorkspace() {
 		const id = prompt('Enter workspace ID:');
@@ -11,12 +10,7 @@
 			alert('Workspace ID is required.');
 			return;
 		}
-		const name = prompt('Enter workspace name:');
-		if (!name) {
-			alert('Workspace name is required.');
-			return;
-		}
-		workspaceManager.createWorkspace(id, name);
+		workspaceManager.createWorkspace(id);
 	}
 </script>
 
@@ -25,12 +19,12 @@
 		<h1>Workspaces</h1>
 		<div class="workspaces-list">
 			{#each workspaces as workspace}
-				<a href="/workspace?w={workspace.id}" class="workspace-link">
+				<a href="/workspace/{workspace.id}" class="workspace-link" {@attach draggable}>
 					<div class="workspace-card">
 						<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M15.5 7.5V15C15.5 15.8284 14.8284 16.5 14 16.5H7C6.17157 16.5 5.5 15.8284 5.5 15V5C5.5 4.17157 6.17157 3.5 7 3.5H11.5M15.5 7.5L11.5 3.5M15.5 7.5H12.5C11.9477 7.5 11.5 7.05228 11.5 6.5V3.5" stroke="currentColor" stroke-linejoin="round"/>
 						</svg>
-						<span>{workspace.name}</span>
+						<span>{workspace.id}</span>
 					</div>
 				</a>
 			{/each}
